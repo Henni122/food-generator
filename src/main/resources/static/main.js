@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const getRandomFoodBtn = document.getElementById("get-random-dish");
 
 
-    async function fetchRecipies() {
+    const url = "http://localhost:8080/api/random-meal";
 
-        const url = "http://localhost:8080/api/random-meal";
+    async function fetchRecipies() {
 
         try {
             const response = await fetch(url);
@@ -25,24 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     getRandomFoodBtn.addEventListener("click", fetchRecipies);
 
-    /*
-    const randomMat = document.createElement("p");
-                    randomMat.innerText = JSON.stringify(response);
-                    document.body.appendChild(randomMat);
-     */
 
 
     function displayRecipieInformation(data) {
         console.log(data);
 
-        document.getElementById("name").innerText = meal.name;
-        document.getElementById("source").innerText = meal.source;
-        document.getElementById("image").src = meal.image;
-    }
+        document.getElementById("name").innerText = data.name;
+        const foodSource =  document.getElementById("source");
+        foodSource.textContent = "View Recepie";
+        foodSource.target = "_blank";
+        foodSource.href = data.source;
 
 
-    function formatDisplayedData() {
-
+        document.getElementById("image").src = data.image;
     }
 })
 
