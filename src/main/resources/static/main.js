@@ -6,23 +6,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchRecipies() {
 
-        try {
-            const url = `https://www.themealdb.com/api/json/v1/1/random.php`;
+        const url = "http://localhost:8080/api/random-meal";
 
-            fetch(url)
-                .then(response => response.json())
-                .catch(error => {
-                    console.error("Error fetching data:", error);
-                });
+        try {
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`Response status ${response.status}`);
+            }
+
+            const result = await response.json();
+            displayRecipieInformation(result)
         }
+
         catch (error) {
-            console.error("An unexcpected error occurred:", error);
+            console.error(error.message);
         }
     }
-    getRandomFoodBtn.addEventListener("click", () => {
-        fetchRecipies().then(response => fetchRecipies());
-
-    })
+    getRandomFoodBtn.addEventListener("click", fetchRecipies);
 
     /*
     const randomMat = document.createElement("p");
@@ -32,8 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function displayRecipieInformation(data) {
+        console.log(data);
 
-
+        document.getElementById("name").innerText = meal.name;
+        document.getElementById("source").innerText = meal.source;
+        document.getElementById("image").src = meal.image;
     }
 
 

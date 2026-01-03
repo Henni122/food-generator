@@ -26,10 +26,31 @@ SERVICE KLASSEN ER SELVE HJERNEN TIL PROSJEKTET
  */
 
 
-import oslomet.foodgenerator.dto.FoodDto;
-import oslomet.foodgenerator.model.FoodModel;
-import oslomet.foodgenerator.repository.FoodRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import oslomet.foodgenerator.MealApiResponse;
+import oslomet.foodgenerator.MealFromApi;
+import oslomet.foodgenerator.dto.MealDto;
 
+
+@Service
 public class FoodService {
+    private final String API_URL = "https://www.themealdb.com/api/json/v1/1/random.php";
+
+    public MealDto getRandomMeal() {
+        RestTemplate restTemplate = new RestTemplate();
+
+        MealApiResponse response = restTemplate.getForObject(API_URL, MealApiResponse.class);
+
+        MealFromApi meal = response.getMeals().get(0);
+
+        return new MealDto(
+                meal.getStrMeal(),
+                meal.getStrSource(),
+                meal.getStrMealThumb()
+        );
+
+
+    }
 
 }

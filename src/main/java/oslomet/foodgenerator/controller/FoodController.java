@@ -1,9 +1,9 @@
 package oslomet.foodgenerator.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import oslomet.foodgenerator.dto.MealDto;
 import oslomet.foodgenerator.service.FoodService;
 
 
@@ -31,9 +31,14 @@ Tilfeldige beregninger
 @RequestMapping("/api")
 public class FoodController {
 
-    @GetMapping("/random")
-    public void getFood() {
+    private final FoodService foodService;
 
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
     }
 
+    @GetMapping("/api/random-meal")
+    public MealDto getRandomMeal() {
+        return foodService.getRandomMeal();
+    }
 }
