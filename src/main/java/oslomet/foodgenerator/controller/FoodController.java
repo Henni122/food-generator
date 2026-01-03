@@ -28,7 +28,6 @@ Tilfeldige beregninger
 
 
 @RestController
-@RequestMapping("/api")
 public class FoodController {
 
     private final FoodService foodService;

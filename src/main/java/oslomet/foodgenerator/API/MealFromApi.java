@@ -1,4 +1,4 @@
-package oslomet.foodgenerator;
+package oslomet.foodgenerator.API;
 
 public class MealFromApi {
     private String strMeal;

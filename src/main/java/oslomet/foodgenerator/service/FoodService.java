@@ -28,8 +28,8 @@ SERVICE KLASSEN ER SELVE HJERNEN TIL PROSJEKTET
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import oslomet.foodgenerator.MealApiResponse;
-import oslomet.foodgenerator.MealFromApi;
+import oslomet.foodgenerator.API.MealApiResponse;
+import oslomet.foodgenerator.API.MealFromApi;
 import oslomet.foodgenerator.dto.MealDto;
 
 

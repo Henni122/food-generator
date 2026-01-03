@@ -1,4 +1,5 @@
-package oslomet.foodgenerator;
+package oslomet.foodgenerator.API;
+
 import java.util.*;
 
 public class MealApiResponse {
